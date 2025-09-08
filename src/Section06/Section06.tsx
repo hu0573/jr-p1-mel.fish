@@ -1,5 +1,5 @@
 // src/Section06/Section06.tsx
-import React from "react";
+// import React from "react";
 
 const CTA_URL = "#"; // 按需替换
 const BG_TOP = "#F6F6F6"; // 顶部浅灰

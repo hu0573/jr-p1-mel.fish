@@ -1,5 +1,5 @@
 // src/Section04/Section04.tsx
-import React from "react";
+// import React from "react";
 import banner1x from "./image_12980.png";
 import banner2x from "./image_12980@2x.png";
 

@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import TitleWidthCircle from "../TitleWidthCircle/TitleWidthCircle";
 
 const block1Color = "#F1FAFD";

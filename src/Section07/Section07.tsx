@@ -1,5 +1,5 @@
 // src/Section07/Section07.tsx
-import React from "react";
+// import React from "react";
 import logo1x from "./Group_2085677915.png";
 import logo2x from "./Group_2085677915@2x.png";
 
