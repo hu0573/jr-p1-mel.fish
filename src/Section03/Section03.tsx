@@ -15,6 +15,10 @@ type Props = {
   techs: string[];
 };
 
+const backGroundCurve = "#F2FAFE";
+const barFocus = "#1E778F";
+const titleFocus = "#2D7597";
+
 const props: Props = {
   title: "Explore how we turn ideas into reality",
   projects: [
@@ -78,7 +82,10 @@ export default function Section03() {
                 className="group block w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 rounded-2xl"
               >
                 <div className="p-2">
-                  <h3 className="text-xl font-semibold text-slate-900 group-hover:text-sky-700 transition">
+                  <h3
+                    className="text-xl font-semibold text-slate-900 transition"
+                    style={active === idx ? { color: titleFocus } : undefined}
+                  >
                     {p.name}
                   </h3>
                   <p
@@ -100,19 +107,25 @@ export default function Section03() {
                     className={[
                       "block h-[6px] w-full rounded-full transition-all duration-300",
                       active === idx
-                        ? "bg-sky-500"
+                        ? ""
                         : "bg-slate-200 group-hover:bg-slate-300",
                     ].join(" ")}
+                    style={
+                      active === idx ? { backgroundColor: barFocus } : undefined
+                    }
                   />
                   {/* 顶部居中的蓝色三角 */}
                   <span
                     aria-hidden
                     className={[
                       "transition-all absolute -top-[6px] left-1/2 -translate-x-1/2 border-l-[6px] border-r-[6px] border-b-[6px] border-l-transparent border-r-transparent",
-                      active === idx
-                        ? "border-b-sky-500"
-                        : "border-b-transparent",
+                      active === idx ? "" : "border-b-transparent",
                     ].join(" ")}
+                    style={
+                      active === idx
+                        ? { borderBottomColor: barFocus }
+                        : undefined
+                    }
                   />
                 </div>
               </button>
@@ -130,14 +143,18 @@ export default function Section03() {
           {/* 活动蓝条（宽 1/3，随 active=0/1/2 平移） */}
           <span
             aria-hidden
-            className="absolute top-0 h-[6px] w-1/3 rounded-full bg-sky-500 transition-transform duration-300"
-            style={{ transform: `translateX(${active * 100}%)` }}
+            className="absolute top-0 h-[6px] w-1/3 rounded-full transition-transform duration-300"
+            style={{
+              backgroundColor: barFocus,
+              transform: `translateX(${active * 100}%)`,
+            }}
           >
             {/* 蓝条正中的小三角 */}
             <span
               className="absolute -top-[6px] left-1/2 -translate-x-1/2
                  border-l-[6px] border-r-[6px] border-b-[6px]
-                 border-l-transparent border-r-transparent border-b-sky-500"
+                 border-l-transparent border-r-transparent"
+              style={{ borderBottomColor: barFocus }}
             />
           </span>
         </div>
@@ -176,7 +193,7 @@ function WaveBackground({ className = "" }: { className?: string }) {
         preserveAspectRatio="none"
       >
         <path
-          fill="#F1F5F9" /* slate-100 近似 */
+          fill={backGroundCurve} /* slate-100 近似 */
           d="M0,224L48,229.3C96,235,192,245,288,261.3C384,277,480,299,576,298.7C672,299,768,277,864,245.3C960,213,1056,171,1152,149.3C1248,128,1344,128,1392,128L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
         />
       </svg>
