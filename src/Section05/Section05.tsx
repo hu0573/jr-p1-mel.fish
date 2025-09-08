@@ -1,4 +1,3 @@
-// import React from "react";
 import TitleWidthCircle from "../TitleWidthCircle/TitleWidthCircle";
 
 const block1Color = "#F1FAFD";
@@ -60,7 +59,12 @@ const targets: Target[] = [
 export function Section05() {
   return (
     // 👇 关键：让整个区块横向出血，占满视口宽度
-    <section className="relative w-screen left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] overflow-hidden py-14">
+    <section
+      className="
+  relative overflow-hidden py-14
+  lg:w-screen lg:left-1/2 lg:right-1/2 lg:-ml-[50vw] lg:-mr-[50vw]
+"
+    >
       {/* 右侧淡橙色背景曲线：贴右侧，放在内容层后面 */}
       <img
         aria-hidden
@@ -132,12 +136,12 @@ function Block1({ icon, title, subTitle, text, bg }: Block1Props) {
       />
 
       {/* 文案 */}
-      <h3 className="relative z-2 text-xl font-semibold text-slate-900">
+      <h3 className="relative z-[2] text-xl font-semibold text-slate-900">
         {title}
       </h3>
       <span
         aria-hidden
-        className="relative -top-[8px] z-1 mx-auto mt-0 block h-[5px] w-[98px] rounded-full bg-[var(--bar-color)] transition-opacity duration-300"
+        className="relative -top-[8px] z-[1] mx-auto mt-0 block h-[5px] w-[98px] rounded-full bg-[var(--bar-color)] transition-opacity duration-300"
         style={{ ["--bar-color" as any]: barColor }}
       />
       <p className="mt-2 text-lg text-slate-700">{subTitle}</p>

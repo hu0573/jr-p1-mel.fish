@@ -20,8 +20,8 @@ export default function TitleWidthCircle({
   color = "#FD933F",
   fade = 0.3,
   angle = 147,
-  offsetX = -18,
-  offsetY = -10,
+  offsetX = -10,
+  offsetY = -15,
 }: Props) {
   const gradId = useId(); // 保证多个实例不冲突
   const r = (size - thickness) / 2; // 圆半径
