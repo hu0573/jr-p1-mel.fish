@@ -1,4 +1,5 @@
 import { useState } from "react";
+import TitleWidthCircle from "../TitleWidthCircle/TitleWidthCircle.tsx";
 
 type Project = {
   id: string;
@@ -18,6 +19,8 @@ type Props = {
 const backGroundCurve = "#F2FAFE";
 const barFocus = "#1E778F";
 const titleFocus = "#2D7597";
+const tagBackground = "#FFF5EC";
+const tagText = "#FD933F ";
 
 const props: Props = {
   title: "Explore how we turn ideas into reality",
@@ -66,9 +69,7 @@ export default function Section03() {
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         {/* 标题 */}
         <header className="mb-8 lg:mb-12">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-slate-900">
-            {title}
-          </h2>
+          <TitleWidthCircle text={title} />
         </header>
 
         {/* 三列项目卡 */}
@@ -138,12 +139,12 @@ export default function Section03() {
           {/* 灰色底条 */}
           <span
             aria-hidden
-            className="block h-[6px] w-full rounded-full bg-slate-200"
+            className="absolute bottom-0 block h-[2px] w-full bg-slate-200"
           />
           {/* 活动蓝条（宽 1/3，随 active=0/1/2 平移） */}
           <span
             aria-hidden
-            className="absolute top-0 h-[6px] w-1/3 rounded-full transition-transform duration-300"
+            className="absolute bottom-0 h-[6px] w-1/3 transition-transform duration-300"
             style={{
               backgroundColor: barFocus,
               transform: `translateX(${active * 100}%)`,
@@ -171,7 +172,10 @@ export default function Section03() {
           <ul className="mt-6 flex flex-wrap gap-2">
             {projects[active].techs.map((t) => (
               <li key={t}>
-                <span className="inline-flex items-center rounded-full border border-slate-300 px-3 py-1 text-sm text-slate-700 hover:bg-slate-100">
+                <span
+                  className="inline-flex items-center rounded-sm px-3 py-1 text-sm"
+                  style={{ background: tagBackground, color: tagText }}
+                >
                   {t}
                 </span>
               </li>
