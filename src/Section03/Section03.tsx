@@ -81,7 +81,12 @@ export default function Section03() {
                   <h3 className="text-xl font-semibold text-slate-900 group-hover:text-sky-700 transition">
                     {p.name}
                   </h3>
-                  <p className="mt-3 text-slate-600 leading-relaxed">
+                  <p
+                    className={[
+                      "mt-3 leading-relaxed",
+                      active === idx ? "text-slate-400" : "text-slate-600",
+                    ].join(" ")}
+                  >
                     {p.description}
                   </p>
                 </div>
@@ -91,7 +96,7 @@ export default function Section03() {
                   <span
                     aria-hidden
                     className={[
-                      "block h-[6px] w-24 rounded-full transition-all duration-300",
+                      "block h-[6px] w-100% rounded-full transition-all duration-300",
                       active === idx
                         ? "bg-sky-500"
                         : "bg-slate-200 group-hover:bg-slate-300",
