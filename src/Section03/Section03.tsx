@@ -92,14 +92,26 @@ export default function Section03() {
                 </div>
 
                 {/* 选中指示条 */}
-                <div className="mt-3 h-[6px]">
+                {/* 手机/小屏显示 */}
+                <div className="relative mt-3 h-[6px] md:hidden">
+                  {/* 灰色底条 */}
                   <span
                     aria-hidden
                     className={[
-                      "block h-[6px] w-100% rounded-full transition-all duration-300",
+                      "block h-[6px] w-full rounded-full transition-all duration-300",
                       active === idx
                         ? "bg-sky-500"
                         : "bg-slate-200 group-hover:bg-slate-300",
+                    ].join(" ")}
+                  />
+                  {/* 顶部居中的蓝色三角 */}
+                  <span
+                    aria-hidden
+                    className={[
+                      "transition-all absolute -top-[6px] left-1/2 -translate-x-1/2 border-l-[6px] border-r-[6px] border-b-[6px] border-l-transparent border-r-transparent",
+                      active === idx
+                        ? "border-b-sky-500"
+                        : "border-b-transparent",
                     ].join(" ")}
                   />
                 </div>
@@ -107,6 +119,28 @@ export default function Section03() {
             </li>
           ))}
         </ul>
+
+        {/* 大屏显示：三列时用 1/3 宽的活动条 */}
+        <div className="relative mt-3 h-[6px] hidden md:block">
+          {/* 灰色底条 */}
+          <span
+            aria-hidden
+            className="block h-[6px] w-full rounded-full bg-slate-200"
+          />
+          {/* 活动蓝条（宽 1/3，随 active=0/1/2 平移） */}
+          <span
+            aria-hidden
+            className="absolute top-0 h-[6px] w-1/3 rounded-full bg-sky-500 transition-transform duration-300"
+            style={{ transform: `translateX(${active * 100}%)` }}
+          >
+            {/* 蓝条正中的小三角 */}
+            <span
+              className="absolute -top-[6px] left-1/2 -translate-x-1/2
+                 border-l-[6px] border-r-[6px] border-b-[6px]
+                 border-l-transparent border-r-transparent border-b-sky-500"
+            />
+          </span>
+        </div>
 
         {/* 引述 */}
         {quote && (
