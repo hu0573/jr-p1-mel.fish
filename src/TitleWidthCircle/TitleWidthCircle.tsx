@@ -3,18 +3,34 @@ import { useId } from "react";
 type Props = {
   text: string;
   className?: string;
-  size?: number; // 外径
-  thickness?: number; // 边框厚度
-  color?: string; // 主色（十六进制）
-  fade?: number; // 尾端透明度 0~1
-  angle?: number; // 渐变角度
-  offsetX?: number; // 相对标题左上角偏移
+  /** 圆圈外径（px） */
+  size?: number;
+  /** 圆圈边框厚度（px） */
+  thickness?: number;
+  /** 主色（十六进制） */
+  color?: string;
+  /** 尾端透明度 0~1 */
+  fade?: number;
+  /** 渐变角度（度） */
+  angle?: number;
+  /** 圆圈相对标题左上角 X 偏移（px，负值向左） */
+  offsetX?: number;
+  /** 圆圈相对标题左上角 Y 偏移（px，负值向上） */
   offsetY?: number;
+
+  /** 字号（rem），默认 36px => 2.25rem（root 16px 时） */
+  fontSizeRem?: number;
+  /** 字体族 */
+  fontFamily?: string;
+  /** 字重 */
+  fontWeight?: number | string;
+  /** 文本颜色 */
+  textColor?: string;
 };
 
-export default function TitleWidthCircle({
+export default function TitleWithCircle({
   text,
-  className = "text-2xl sm:text-3xl lg:text-4xl font-semibold text-slate-900",
+  className = "leading-tight", // 行高由 Tailwind 控制，字号/颜色走行内样式以精准匹配
   size = 36,
   thickness = 5,
   color = "#FD933F",
@@ -22,6 +38,10 @@ export default function TitleWidthCircle({
   angle = 147,
   offsetX = -10,
   offsetY = -15,
+  fontSizeRem = 2.25, // 36px
+  fontFamily = 'PingFang SC, PingFang SC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"',
+  fontWeight = 700,
+  textColor = "#000000",
 }: Props) {
   const gradId = useId(); // 保证多个实例不冲突
   const r = (size - thickness) / 2; // 圆半径
@@ -62,8 +82,21 @@ export default function TitleWidthCircle({
         />
       </svg>
 
-      {/* 标题 */}
-      <h2 className={`relative z-10 leading-tight ${className}`}>{text}</h2>
+      {/* 标题文本：严格匹配给定样式 */}
+      <h2
+        className={`relative z-10 ${className}`}
+        style={{
+          fontFamily,
+          fontWeight,
+          fontSize: `${fontSizeRem}rem`,
+          color: textColor,
+          textAlign: "left",
+          fontStyle: "normal",
+          textTransform: "none",
+        }}
+      >
+        {text}
+      </h2>
     </div>
   );
 }
