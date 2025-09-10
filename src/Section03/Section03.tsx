@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TitleWidthCircle from "../TitleWidthCircle/TitleWidthCircle.tsx";
+import TitleWithCircle from "../TitleWithCircle/TitleWithCircle.tsx";
 
 type Project = {
   id: string;
@@ -69,7 +69,7 @@ export default function Section03() {
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         {/* 标题 */}
         <header className="mb-8 lg:mb-12">
-          <TitleWidthCircle text={title} />
+          <TitleWithCircle text={title} />
         </header>
 
         {/* 三列项目卡 */}
