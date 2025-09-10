@@ -1,4 +1,5 @@
 import TitleWidthCircle from "../TitleWidthCircle/TitleWidthCircle";
+import type { CSSProperties } from "react";
 
 const block1Color = "#F1FAFD";
 const block2Color = "#F7F7F7";
@@ -18,7 +19,7 @@ import block2Img2x from "./image_12981@2x.png";
 import mask1x from "./Mask_group.png";
 import mask2x from "./Mask_group@2x.png";
 
-export const icons = {
+const icons = {
   startups: { "1x": startups1x, "2x": startups2x },
   enterprises: { "1x": enterprises1x, "2x": enterprises2x },
   innovators: { "1x": innovators1x, "2x": innovators2x },
@@ -117,6 +118,7 @@ type Block1Props = {
 
 function Block1({ icon, title, subTitle, text, bg }: Block1Props) {
   const set = icons[icon];
+  const barStyle = { "--bar-color": barColor } as CSSProperties;
 
   return (
     <article
@@ -142,7 +144,7 @@ function Block1({ icon, title, subTitle, text, bg }: Block1Props) {
       <span
         aria-hidden
         className="relative -top-[8px] z-[1] mx-auto mt-0 block h-[5px] w-[98px] rounded-full bg-[var(--bar-color)] transition-opacity duration-300"
-        style={{ ["--bar-color" as any]: barColor }}
+        style={barStyle}
       />
       <p className="mt-2 text-lg text-slate-700">{subTitle}</p>
       <p className="mt-4 text-slate-600 leading-relaxed">{text}</p>
