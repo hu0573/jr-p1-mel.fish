@@ -12,7 +12,7 @@ type Props = {
   offsetY?: number;
 };
 
-export default function TitleWidthCircle({
+export default function TitleWithCircle({
   text,
   className = "text-2xl sm:text-3xl lg:text-4xl font-semibold text-slate-900",
   size = 36,

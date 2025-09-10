@@ -1,4 +1,4 @@
-import TitleWidthCircle from "../TitleWidthCircle/TitleWidthCircle";
+import TitleWithCircle from "../TitleWithCircle/TitleWithCircle";
 import type { CSSProperties } from "react";
 
 const block1Color = "#F1FAFD";
@@ -82,7 +82,7 @@ export function Section05() {
 
       {/* 内容容器仍然居中对齐 */}
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <TitleWidthCircle text="Your TechnicalCo-founder in Melkournefor everyone" />
+        <TitleWithCircle text="Your Technical Co-founder in Melbourne for everyone" />
         <p className="mt-4 max-w-3xl text-slate-600">
           At Melfish, we combine rigorous engineering principles with a
           human-centered design philosophy to create digital products that truly
