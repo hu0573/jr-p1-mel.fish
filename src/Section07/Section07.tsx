@@ -2,6 +2,7 @@
 // import React from "react";
 import logo1x from "./Group_2085677915.png";
 import logo2x from "./Group_2085677915@2x.png";
+import type { CSSProperties } from "react";
 
 const BG = "#1F2A33";
 const BAR = "#71C6E5"; // 深蓝色 bar
@@ -14,6 +15,10 @@ export function Section07() {
     { label: "Blog", href: "#" },
     { label: "See All Service", href: "#" },
   ];
+  const linkStyle = {
+    "--bar-color": BAR,
+    "--hover-text": HOVER_TEXT,
+  } as CSSProperties;
 
   return (
     <section
@@ -46,12 +51,7 @@ export function Section07() {
                   <a
                     href={it.href}
                     className="group relative inline-flex items-center py-1 transition-colors"
-                    style={
-                      {
-                        ["--bar-color" as any]: BAR,
-                        ["--hover-text" as any]: HOVER_TEXT,
-                      } as React.CSSProperties
-                    }
+                    style={linkStyle}
                   >
                     {/* 文本：hover 时略亮 */}
                     <span className="relative z-10 group-hover:text-[var(--hover-text)]">
