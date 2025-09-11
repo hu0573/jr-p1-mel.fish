@@ -15,7 +15,12 @@ import mask2x from "./Mask_group@2x.png";
 /* ========= 常量（颜色/尺寸/链接/字体） ========= */
 const FF = "PingFang SC, PingFang SC";
 
-const PAGE_MAXW = "max-w-[1280px]";
+{
+  /* 保证有内容的元素宽度是1280px与设计稿一致 */
+}
+const PAGE_PADDING = "px-[40px]";
+const PAGE_MAXW = "max-w-[1360px]";
+
 const block1Color = "#F1FAFD";
 const block2Color = "#F7F7F7";
 const buttonColor = "#2D7597";
@@ -83,7 +88,7 @@ export function Section05() {
       />
 
       {/* content container */}
-      <div className={`mx-auto ${PAGE_MAXW} px-4 sm:px-6 lg:px-0`}>
+      <div className={`mx-auto ${PAGE_MAXW} ${PAGE_PADDING} `}>
         <TitleWithCircle text="Your Technical Co-founder in Melbourne for everyone" />
 
         {/* 介绍段落（rem 排版） */}

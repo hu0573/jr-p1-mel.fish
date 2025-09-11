@@ -7,7 +7,7 @@ import { Section07 } from "./Section07/Section07.tsx";
 
 function App() {
   return (
-    <div className="p-8">
+    <div>
       <Section03 />
       <Section04 />
       <Section05 />
