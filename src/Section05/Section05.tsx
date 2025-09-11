@@ -25,6 +25,78 @@ const icons = {
   innovators: { "1x": innovators1x, "2x": innovators2x },
 } as const;
 
+// ---------- Typography (REM) ----------
+const FF = "PingFang SC, PingFang SC";
+
+const styles = {
+  // (1) Intro paragraph
+  introP: {
+    fontFamily: FF,
+    fontWeight: 500,
+    fontSize: "1.125rem", // 18px
+    lineHeight: "2.25rem", // 36px
+    color: "#000000b3",
+    textAlign: "left" as const,
+    fontStyle: "normal" as const,
+    textTransform: "none" as const,
+  },
+
+  // (2) Block1
+  block1Title: {
+    fontFamily: FF,
+    fontWeight: 700,
+    fontSize: "1.75rem", // 28px
+    lineHeight: "3.5625rem", // 57px
+    color: "#000000",
+    textAlign: "left" as const,
+    fontStyle: "normal" as const,
+    textTransform: "none" as const,
+  },
+  block1SubTitle: {
+    fontFamily: FF,
+    // fontWeight: 500,
+    fontSize: "1.3125rem", // 21px
+    lineHeight: "2.625rem", // 42px
+    color: "#000000",
+    textAlign: "left" as const,
+    fontStyle: "normal" as const,
+    textTransform: "none" as const,
+  },
+  block1Text: {
+    fontFamily: FF,
+    fontWeight: 500,
+    fontSize: "1rem", // 16px
+    lineHeight: "2rem", // 32px
+    color: "#000000b3", //透明70%
+    textAlign: "center" as const,
+    fontStyle: "normal" as const,
+    textTransform: "none" as const,
+  },
+
+  // (3) Block2
+  block2Title: {
+    fontFamily: FF,
+    fontWeight: 500,
+    fontSize: "2.6rem", // 42px
+    lineHeight: "5.3125rem", // 85px
+    color: "#000000",
+    textAlign: "left" as const,
+    fontStyle: "normal" as const,
+    textTransform: "none" as const,
+  },
+  block2Text: {
+    fontFamily: FF,
+    fontWeight: 500,
+    fontSize: "1.125rem", // 18px
+    lineHeight: "2.25rem", // 36px
+    color: "#000000b3",
+    textAlign: "left" as const,
+    fontStyle: "normal" as const,
+    textTransform: "none" as const,
+  },
+} satisfies Record<string, CSSProperties>;
+
+// ---------- Data ----------
 type Target = {
   id: "startups" | "enterprises" | "innovators";
   icon: keyof typeof icons;
@@ -57,16 +129,16 @@ const targets: Target[] = [
   },
 ];
 
+// ---------- Components ----------
 export function Section05() {
   return (
-    // 👇 关键：让整个区块横向出血，占满视口宽度
     <section
       className="
-  relative overflow-hidden py-14
-  lg:w-screen lg:left-1/2 lg:right-1/2 lg:-ml-[50vw] lg:-mr-[50vw]
-"
+        relative overflow-hidden py-14
+        lg:w-screen lg:left-1/2 lg:right-1/2 lg:-ml-[50vw] lg:-mr-[50vw] 
+      "
     >
-      {/* 右侧淡橙色背景曲线：贴右侧，放在内容层后面 */}
+      {/* background mask */}
       <img
         aria-hidden
         src={mask1x}
@@ -80,16 +152,18 @@ export function Section05() {
         "
       />
 
-      {/* 内容容器仍然居中对齐 */}
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      {/* content container */}
+      <div className="mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-0">
         <TitleWithCircle text="Your Technical Co-founder in Melbourne for everyone" />
-        <p className="mt-4 max-w-3xl text-slate-600">
+
+        {/* (1) Intro paragraph with rem-based typography */}
+        <p className="mt-4 max-w-3xl" style={styles.introP}>
           At Melfish, we combine rigorous engineering principles with a
           human-centered design philosophy to create digital products that truly
           matter.
         </p>
 
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
           {targets.map((t) => (
             <Block1
               key={t.id}
@@ -122,10 +196,10 @@ function Block1({ icon, title, subTitle, text, bg }: Block1Props) {
 
   return (
     <article
-      className="rounded-3xl p-8 text-center shadow-sm"
+      className="rounded-3xl p-8 flex flex-col items-center"
       style={bg ? { backgroundColor: bg } : undefined}
     >
-      {/* 图标 */}
+      {/* icon */}
       <img
         src={set["1x"]}
         srcSet={`${set["1x"]} 1x, ${set["2x"]} 2x`}
@@ -134,20 +208,39 @@ function Block1({ icon, title, subTitle, text, bg }: Block1Props) {
         height={64}
         loading="lazy"
         decoding="async"
-        className="mx-auto mb-4 h-16 w-16 select-none"
+        className="mb-4 h-16 w-16 select-none"
       />
 
-      {/* 文案 */}
-      <h3 className="relative z-[2] text-xl font-semibold text-slate-900">
-        {title}
-      </h3>
-      <span
-        aria-hidden
-        className="relative -top-[8px] z-[1] mx-auto mt-0 block h-[5px] w-[98px] rounded-full bg-[var(--bar-color)] transition-opacity duration-300"
-        style={barStyle}
-      />
-      <p className="mt-2 text-lg text-slate-700">{subTitle}</p>
-      <p className="mt-4 text-slate-600 leading-relaxed">{text}</p>
+      {/* title (wrap with a relative container) */}
+      <div className="relative inline-block">
+        <h3 className="relative z-[2]" style={styles.block1Title}>
+          {title}
+        </h3>
+
+        {/* underline bar: absolutely positioned under the title, behind it */}
+        <span
+          aria-hidden
+          className="
+            absolute left-1/2 -translate-x-1/2
+            z-[1]
+            h-[0.3125rem] w-[6.125rem]
+            bg-[var(--bar-color)]
+            -bottom-[-1rem]
+            transition-opacity duration-300
+          "
+          style={barStyle}
+        />
+      </div>
+
+      {/* subtitle */}
+      <p className="mt-2" style={styles.block1SubTitle}>
+        {subTitle}
+      </p>
+
+      {/* text */}
+      <p className="mt-4" style={styles.block1Text}>
+        {text}
+      </p>
     </article>
   );
 }
@@ -155,35 +248,63 @@ function Block1({ icon, title, subTitle, text, bg }: Block1Props) {
 function Block2() {
   return (
     <div
-      className="mt-12 grid items-center gap-8 rounded-3xl p-6 md:grid-cols-2 md:p-10"
+      className="mt-12 grid items-center rounded-3xl p-0 md:grid-cols-[3fr_1fr]"
       style={{ backgroundColor: block2Color }}
     >
-      <div>
-        <h3 className="text-2xl font-semibold text-slate-900">
+      <div className="flex flex-col items-start p-10">
+        {/* (3) Block2 title */}
+        {/* <h3 style={styles.block2Title}>
           Dedicated Developers for Your Project
-        </h3>
-        <p className="mt-4 text-slate-600 leading-relaxed">
+        </h3> */}
+        {/* (3) Block2 title with underline bar */}
+        <div className="relative inline-block">
+          <h3 className="relative z-[2]" style={styles.block2Title}>
+            Dedicated Developers for Your Project
+          </h3>
+
+          <span
+            aria-hidden
+            className="
+        absolute left-12   /* 如果要居中就改成 left-1/2 -translate-x-1/2 */
+        z-[1]
+        h-[0.5rem] w-[6.125rem]
+        bg-[var(--bar-color)]
+        -bottom-[-1.5rem]
+        transition-opacity duration-300
+      "
+            style={{ "--bar-color": barColor } as CSSProperties}
+          />
+        </div>
+
+        {/* (3) Block2 text */}
+        <p className="mt-4" style={styles.block2Text}>
           At Melfish, we provide top-tier developers who integrate seamlessly
           with your team, delivering clean code, scalable architecture, and
           on-time delivery. Get the expertise you need, without the overhead.
         </p>
+
         <a
           href={urlHireUs}
-          className="mt-6 inline-flex items-center rounded-full px-5 py-2.5 text-white transition "
-          style={{ backgroundColor: buttonColor }}
+          className="mt-6 inline-flex items-center justify-center rounded-full text-white transition"
+          style={{
+            backgroundColor: buttonColor,
+            fontFamily: FF,
+            width: "7.3125rem", // 117px
+            height: "3.5rem", // 56px
+          }}
         >
           Hire Us
         </a>
       </div>
 
-      <div className="overflow-hidden rounded-2xl">
+      <div className="flex sm:justify-center md:justify-end overflow-hidden rounded-2xl">
         <img
           src={block2Img}
           srcSet={`${block2Img} 1x, ${block2Img2x} 2x`}
           alt=""
           loading="lazy"
           decoding="async"
-          className="h-64 w-full object-contain md:h-[260px]"
+          className="h-64 md:h-[260px] object-contain"
         />
       </div>
     </div>
