@@ -1,6 +1,23 @@
 import { useState } from "react";
 import TitleWithCircle from "../TitleWithCircle/TitleWithCircle.tsx";
 
+/* ========= 常量（颜色/字体/宽度） ========= */
+const FF = "PingFang SC, PingFang SC";
+
+const PAGE_PADDING = "px-[40px]";
+const PAGE_MAXW = "max-w-[1360px]";
+
+const TEXT_MAIN = "#000000";
+const TEXT_MID = "#000000b3"; // 70% 黑
+const barColor = "#1E778F";
+const titleFocus = "#2D7597";
+const textFocus = "#3F494Eb3";
+const bgCurve = "#F2FAFE";
+const tagBg = "#FFF5EC";
+const tagFg = "#FD933F";
+const baseLine = "#2D759733";
+
+/* ========= 数据 ========= */
 type Project = {
   id: string;
   name: string;
@@ -15,12 +32,6 @@ type Props = {
   quote: string;
   techs: string[];
 };
-
-const backGroundCurve = "#F2FAFE";
-const barFocus = "#1E778F";
-const titleFocus = "#2D7597";
-const tagBackground = "#FFF5EC";
-const tagText = "#FD933F ";
 
 const props: Props = {
   title: "Explore how we turn ideas into reality",
@@ -58,75 +69,96 @@ const props: Props = {
   techs: ["React.js", "Next.js", "Auth.js", "Tiptap", "Prisma"],
 };
 
+/* ========= 组件 ========= */
 export default function Section03() {
   const { title, projects, quote, techs } = props;
   const [active, setActive] = useState(0);
+
   return (
     <section className="relative overflow-hidden">
-      {/* 浅色波浪背景 */}
-      <WaveBackground className="absolute inset-x-0 bottom-0 h-[240px] pointer-events-none" />
+      {/* 背景波浪 */}
+      <WaveBackground className="pointer-events-none absolute inset-x-0 bottom-0 h-[240px] -z-10" />
 
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
+      <div
+        className={`relative mx-auto ${PAGE_MAXW} ${PAGE_PADDING} py-12 lg:py-16`}
+      >
         {/* 标题 */}
-        <header className="mb-8 lg:mb-12">
+        <div className="pb-[100px]">
           <TitleWithCircle text={title} />
-        </header>
+        </div>
 
         {/* 三列项目卡 */}
-        <ul role="list" className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <ul role="list" className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {projects.map((p, idx) => (
             <li key={p.id}>
               <button
                 onMouseEnter={() => setActive(idx)}
                 onFocus={() => setActive(idx)}
                 onClick={() => setActive(idx)}
-                className="group block w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 rounded-2xl"
+                aria-pressed={active === idx}
+                className="group block w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1E778F] rounded-2xl"
               >
                 <div className="p-2">
                   <h3
-                    className="text-xl font-semibold text-slate-900 transition"
-                    style={active === idx ? { color: titleFocus } : undefined}
+                    className="text-[2.25rem] leading-[2.25rem] font-semibold transition"
+                    style={{
+                      color: active === idx ? titleFocus : TEXT_MAIN,
+                      fontFamily: FF,
+                    }}
                   >
                     {p.name}
                   </h3>
                   <p
-                    className={[
-                      "mt-3 leading-relaxed",
-                      active === idx ? "text-slate-400" : "text-slate-600",
-                    ].join(" ")}
+                    className="mt-3 text-[1.1rem] leading-[2rem]"
+                    style={{
+                      color: active === idx ? textFocus : TEXT_MID,
+                      fontFamily: FF,
+                    }}
                   >
                     {p.description}
                   </p>
+                  {/* 下面是按照ui设计稿的聚焦的时候改为居中，有点奇怪。上面就是一直是左对齐的 */}
+                  {/* <h3
+                    className={`text-[2.25rem] leading-[2.25rem] font-semibold transition-all duration-300 ${
+                      active === idx ? "text-center" : "text-left"
+                    }`}
+                    style={{
+                      color: active === idx ? titleFocus : TEXT_MAIN,
+                      fontFamily: FF,
+                    }}
+                  >
+                    {p.name}
+                  </h3>
+
+                  <p
+                    className={`mt-3 text-[1.1rem] leading-[2rem] transition-all duration-300 ${
+                      active === idx ? "text-center" : "text-left"
+                    }`}
+                    style={{
+                      color: active === idx ? textFocus : TEXT_MID,
+                      fontFamily: FF,
+                    }}
+                  >
+                    {p.description}
+                  </p> */}
                 </div>
 
-                {/* 选中指示条 */}
-                {/* 手机/小屏显示 */}
-                <div className="relative mt-3 h-[6px] md:hidden">
-                  {/* 灰色底条 */}
+                {/* 小屏选中指示条 */}
+                <div className="relative mt-3 h-[0.3125rem] md:hidden">
                   <span
                     aria-hidden
-                    className={[
-                      "block h-[6px] w-full rounded-full transition-all duration-300",
-                      active === idx
-                        ? ""
-                        : "bg-slate-200 group-hover:bg-slate-300",
-                    ].join(" ")}
-                    style={
-                      active === idx ? { backgroundColor: barFocus } : undefined
-                    }
+                    className="block h-full w-full rounded-full transition-all duration-300"
+                    style={{
+                      backgroundColor: active === idx ? barColor : baseLine,
+                    }}
                   />
-                  {/* 顶部居中的蓝色三角 */}
                   <span
                     aria-hidden
-                    className={[
-                      "transition-all absolute -top-[6px] left-1/2 -translate-x-1/2 border-l-[6px] border-r-[6px] border-b-[6px] border-l-transparent border-r-transparent",
-                      active === idx ? "" : "border-b-transparent",
-                    ].join(" ")}
-                    style={
-                      active === idx
-                        ? { borderBottomColor: barFocus }
-                        : undefined
-                    }
+                    className="absolute -top-[6px] left-1/2 -translate-x-1/2 border-l-[6px] border-r-[6px] border-b-[6px] border-l-transparent border-r-transparent"
+                    style={{
+                      borderBottomColor:
+                        active === idx ? barColor : "transparent",
+                    }}
                   />
                 </div>
               </button>
@@ -134,35 +166,33 @@ export default function Section03() {
           ))}
         </ul>
 
-        {/* 大屏显示：三列时用 1/3 宽的活动条 */}
-        <div className="relative mt-3 h-[6px] hidden md:block">
-          {/* 灰色底条 */}
+        {/* 大屏底部活动条 */}
+        <div className="relative mt-3 hidden h-[0.3125rem] md:block">
           <span
             aria-hidden
-            className="absolute bottom-0 block h-[2px] w-full bg-slate-200"
+            className="absolute bottom-0 left-0 block h-[2px] w-full rounded-full bg-slate-200"
           />
-          {/* 活动蓝条（宽 1/3，随 active=0/1/2 平移） */}
           <span
             aria-hidden
-            className="absolute bottom-0 h-[6px] w-1/3 transition-transform duration-300"
+            className="absolute bottom-0 left-0 h-full w-1/3 rounded-full transition-transform duration-300"
             style={{
-              backgroundColor: barFocus,
+              backgroundColor: barColor,
               transform: `translateX(${active * 100}%)`,
             }}
           >
-            {/* 蓝条正中的小三角 */}
             <span
-              className="absolute -top-[6px] left-1/2 -translate-x-1/2
-                 border-l-[6px] border-r-[6px] border-b-[6px]
-                 border-l-transparent border-r-transparent"
-              style={{ borderBottomColor: barFocus }}
+              className="absolute -top-[6px] left-1/2 -translate-x-1/2 border-l-[6px] border-r-[6px] border-b-[6px] border-l-transparent border-r-transparent"
+              style={{ borderBottomColor: barColor }}
             />
           </span>
         </div>
 
         {/* 引述 */}
         {quote && (
-          <blockquote className="mt-10 lg:mt-12 text-slate-700 text-base lg:text-lg max-w-4xl">
+          <blockquote
+            className="mt-10 lg:mt-12 max-w-full text-[1rem] leading-[2rem] lg:text-[1.3rem] lg:leading-[2.25rem]"
+            style={{ color: TEXT_MAIN, fontFamily: FF }}
+          >
             “{projects[active].quote}”
           </blockquote>
         )}
@@ -173,8 +203,12 @@ export default function Section03() {
             {projects[active].techs.map((t) => (
               <li key={t}>
                 <span
-                  className="inline-flex items-center rounded-sm px-3 py-1 text-sm"
-                  style={{ background: tagBackground, color: tagText }}
+                  className="inline-flex items-center rounded-sm px-3 py-1 text-[0.875rem] leading-[1.5rem]"
+                  style={{
+                    background: tagBg,
+                    color: tagFg,
+                    fontFamily: FF,
+                  }}
                 >
                   {t}
                 </span>
@@ -187,17 +221,17 @@ export default function Section03() {
   );
 }
 
-/** 波浪背景：极浅的装饰，不抢前景 */
+/* ========= 波浪背景 ========= */
 function WaveBackground({ className = "" }: { className?: string }) {
   return (
     <div className={className} aria-hidden>
       <svg
-        className="w-full h-full"
+        className="h-full w-full"
         viewBox="0 0 1440 320"
         preserveAspectRatio="none"
       >
         <path
-          fill={backGroundCurve} /* slate-100 近似 */
+          fill={bgCurve}
           d="M0,224L48,229.3C96,235,192,245,288,261.3C384,277,480,299,576,298.7C672,299,768,277,864,245.3C960,213,1056,171,1152,149.3C1248,128,1344,128,1392,128L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
         />
       </svg>
