@@ -1,6 +1,6 @@
 import { useId } from "react";
 
-type Props = {
+export type TitleWithCircleProps = {
   text: string;
   className?: string;
   /** 圆圈外径（px） */
@@ -42,7 +42,7 @@ export default function TitleWithCircle({
   fontFamily = 'PingFang SC, PingFang SC, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"',
   fontWeight = 700,
   textColor = "#000000",
-}: Props) {
+}: TitleWithCircleProps) {
   const gradId = useId(); // 保证多个实例不冲突
   const r = (size - thickness) / 2; // 圆半径
 

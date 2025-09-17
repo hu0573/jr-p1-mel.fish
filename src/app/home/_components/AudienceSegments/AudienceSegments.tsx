@@ -1,23 +1,19 @@
-import TitleWithCircle from "../TitleWithCircle/TitleWithCircle";
 import type { CSSProperties } from "react";
+import TitleWithCircle from "../../../../_components/TitleWithCircle";
 
-import startups1x from "./Group_2085678343.png";
-import startups2x from "./Group_2085678343@2x.png";
-import enterprises1x from "./Group_2085678344.png";
-import enterprises2x from "./Group_2085678344@2x.png";
-import innovators1x from "./Group_2085678345.png";
-import innovators2x from "./Group_2085678345@2x.png";
-import block2Img from "./image_12981.png";
-import block2Img2x from "./image_12981@2x.png";
-import mask1x from "./Mask_group.png";
-import mask2x from "./Mask_group@2x.png";
+import startups1x from "./_assets/audience-startups-1x.png";
+import startups2x from "./_assets/audience-startups-2x.png";
+import enterprises1x from "./_assets/audience-enterprises-1x.png";
+import enterprises2x from "./_assets/audience-enterprises-2x.png";
+import innovators1x from "./_assets/audience-innovators-1x.png";
+import innovators2x from "./_assets/audience-innovators-2x.png";
+import audienceCta1x from "./_assets/audience-cta-1x.png";
+import audienceCta2x from "./_assets/audience-cta-2x.png";
+import audienceMask1x from "./_assets/audience-mask-1x.png";
+import audienceMask2x from "./_assets/audience-mask-2x.png";
 
 /* ========= 常量（颜色/尺寸/链接/字体） ========= */
 const FF = "PingFang SC, PingFang SC";
-
-{
-  /* 保证有内容的元素宽度是1280px与设计稿一致 */
-}
 const PAGE_PADDING = "px-[40px]";
 const PAGE_MAXW = "max-w-[1360px]";
 
@@ -70,7 +66,7 @@ const targets: Target[] = [
 ];
 
 /* ========= 组件 ========= */
-export function Section05() {
+export default function AudienceSegments() {
   return (
     <section
       className="
@@ -81,14 +77,14 @@ export function Section05() {
       {/* 背景遮罩 */}
       <img
         aria-hidden
-        src={mask1x}
-        srcSet={`${mask1x} 1x, ${mask2x} 2x`}
+        src={audienceMask1x}
+        srcSet={`${audienceMask1x} 1x, ${audienceMask2x} 2x`}
         alt=""
         className="pointer-events-none absolute -z-10 right-0 inset-y-0 hidden h-full w-auto object-contain md:block"
       />
 
       {/* content container */}
-      <div className={`mx-auto ${PAGE_MAXW} ${PAGE_PADDING} `}>
+      <div className={`mx-auto ${PAGE_MAXW} ${PAGE_PADDING}`}>
         <TitleWithCircle text="Your Technical Co-founder in Melbourne for everyone" />
 
         {/* 介绍段落（rem 排版） */}
@@ -106,26 +102,26 @@ export function Section05() {
 
         {/* 三卡片 */}
         <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
-          {targets.map((t) => (
-            <Block1
-              key={t.id}
-              icon={t.icon}
-              title={t.title}
-              subTitle={t.subTitle}
-              text={t.text}
+          {targets.map((target) => (
+            <AudienceSegmentCard
+              key={target.id}
+              icon={target.icon}
+              title={target.title}
+              subTitle={target.subTitle}
+              text={target.text}
               bg={block1Color}
             />
           ))}
         </div>
 
         {/* 大横幅 */}
-        <Block2 />
+        <AudienceCta />
       </div>
     </section>
   );
 }
 
-type Block1Props = {
+type AudienceSegmentCardProps = {
   icon: keyof typeof icons;
   title: string;
   subTitle: string;
@@ -133,7 +129,7 @@ type Block1Props = {
   bg?: string;
 };
 
-function Block1({ icon, title, subTitle, text, bg }: Block1Props) {
+function AudienceSegmentCard({ icon, title, subTitle, text, bg }: AudienceSegmentCardProps) {
   const set = icons[icon];
 
   return (
@@ -198,7 +194,7 @@ function Block1({ icon, title, subTitle, text, bg }: Block1Props) {
   );
 }
 
-function Block2() {
+function AudienceCta() {
   return (
     <div
       className="mt-12 grid items-center rounded-3xl p-0 md:grid-cols-[3fr_1fr]"
@@ -255,8 +251,8 @@ function Block2() {
 
       <div className="flex overflow-hidden rounded-2xl sm:justify-center md:justify-end">
         <img
-          src={block2Img}
-          srcSet={`${block2Img} 1x, ${block2Img2x} 2x`}
+          src={audienceCta1x}
+          srcSet={`${audienceCta1x} 1x, ${audienceCta2x} 2x`}
           alt=""
           loading="lazy"
           decoding="async"

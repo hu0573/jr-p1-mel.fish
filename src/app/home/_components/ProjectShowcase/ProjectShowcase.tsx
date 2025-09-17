@@ -1,5 +1,5 @@
 import { useState } from "react";
-import TitleWithCircle from "../TitleWithCircle/TitleWithCircle.tsx";
+import TitleWithCircle from "../../../../_components/TitleWithCircle";
 
 /* ========= 常量（颜色/字体/宽度） ========= */
 const FF = "PingFang SC, PingFang SC";
@@ -26,14 +26,14 @@ type Project = {
   techs: string[];
 };
 
-type Props = {
+type ProjectShowcaseContent = {
   title: string;
   projects: Project[];
   quote: string;
   techs: string[];
 };
 
-const props: Props = {
+const content: ProjectShowcaseContent = {
   title: "Explore how we turn ideas into reality",
   projects: [
     {
@@ -70,8 +70,8 @@ const props: Props = {
 };
 
 /* ========= 组件 ========= */
-export default function Section03() {
-  const { title, projects, quote, techs } = props;
+export default function ProjectShowcase() {
+  const { title, projects, quote, techs } = content;
   const [active, setActive] = useState(0);
 
   return (
@@ -89,8 +89,8 @@ export default function Section03() {
 
         {/* 三列项目卡 */}
         <ul role="list" className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {projects.map((p, idx) => (
-            <li key={p.id}>
+          {projects.map((project, idx) => (
+            <li key={project.id}>
               <button
                 onMouseEnter={() => setActive(idx)}
                 onFocus={() => setActive(idx)}
@@ -106,7 +106,7 @@ export default function Section03() {
                       fontFamily: FF,
                     }}
                   >
-                    {p.name}
+                    {project.name}
                   </h3>
                   <p
                     className="mt-3 text-[1.1rem] leading-[2rem]"
@@ -115,32 +115,8 @@ export default function Section03() {
                       fontFamily: FF,
                     }}
                   >
-                    {p.description}
+                    {project.description}
                   </p>
-                  {/* 下面是按照ui设计稿的聚焦的时候改为居中，有点奇怪。上面就是一直是左对齐的 */}
-                  {/* <h3
-                    className={`text-[2.25rem] leading-[2.25rem] font-semibold transition-all duration-300 ${
-                      active === idx ? "text-center" : "text-left"
-                    }`}
-                    style={{
-                      color: active === idx ? titleFocus : TEXT_MAIN,
-                      fontFamily: FF,
-                    }}
-                  >
-                    {p.name}
-                  </h3>
-
-                  <p
-                    className={`mt-3 text-[1.1rem] leading-[2rem] transition-all duration-300 ${
-                      active === idx ? "text-center" : "text-left"
-                    }`}
-                    style={{
-                      color: active === idx ? textFocus : TEXT_MID,
-                      fontFamily: FF,
-                    }}
-                  >
-                    {p.description}
-                  </p> */}
                 </div>
 
                 {/* 小屏选中指示条 */}
@@ -200,8 +176,8 @@ export default function Section03() {
         {/* 技术栈标签 */}
         {techs.length > 0 && (
           <ul className="mt-6 flex flex-wrap gap-2">
-            {projects[active].techs.map((t) => (
-              <li key={t}>
+            {projects[active].techs.map((tech) => (
+              <li key={tech}>
                 <span
                   className="inline-flex items-center rounded-sm px-3 py-1 text-[0.875rem] leading-[1.5rem]"
                   style={{
@@ -210,7 +186,7 @@ export default function Section03() {
                     fontFamily: FF,
                   }}
                 >
-                  {t}
+                  {tech}
                 </span>
               </li>
             ))}

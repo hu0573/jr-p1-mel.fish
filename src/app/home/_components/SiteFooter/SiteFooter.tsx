@@ -1,20 +1,20 @@
-// src/Section07/Section07.tsx
-// import React from "react";
-import logo1x from "./Group_2085677915.png";
-import logo2x from "./Group_2085677915@2x.png";
 import type { CSSProperties } from "react";
+
+import footerLogo1x from "./_assets/footer-logo-1x.png";
+import footerLogo2x from "./_assets/footer-logo-2x.png";
 
 const BG = "#1F2A33";
 const BAR = "#71C6E5"; // 深蓝色 bar
 const HOVER_TEXT = "rgba(255,255,255,0.92)"; // hover 时文字略亮
 
-export function Section07() {
-  const links = [
-    { label: "About Us", href: "#" },
-    { label: "Products", href: "#" },
-    { label: "Blog", href: "#" },
-    { label: "See All Service", href: "#" },
-  ];
+const links = [
+  { label: "About Us", href: "#" },
+  { label: "Products", href: "#" },
+  { label: "Blog", href: "#" },
+  { label: "See All Service", href: "#" },
+];
+
+export default function SiteFooter() {
   const linkStyle = {
     "--bar-color": BAR,
     "--hover-text": HOVER_TEXT,
@@ -34,8 +34,8 @@ export function Section07() {
             className="inline-flex items-center justify-center md:justify-start"
           >
             <img
-              src={logo1x}
-              srcSet={`${logo1x} 1x, ${logo2x} 2x`}
+              src={footerLogo1x}
+              srcSet={`${footerLogo1x} 1x, ${footerLogo2x} 2x`}
               alt="melfish"
               className="h-9 w-auto"
               loading="lazy"
@@ -46,16 +46,16 @@ export function Section07() {
           {/* 导航：四个按钮都有 bar（默认隐藏，hover 渐显） */}
           <nav aria-label="Primary" className="w-full md:w-auto">
             <ul className="flex flex-wrap items-center justify-center md:justify-end gap-8 text-slate-300">
-              {links.map((it) => (
-                <li key={it.label}>
+              {links.map((link) => (
+                <li key={link.label}>
                   <a
-                    href={it.href}
+                    href={link.href}
                     className="group relative inline-flex items-center py-1 transition-colors"
                     style={linkStyle}
                   >
                     {/* 文本：hover 时略亮 */}
                     <span className="relative z-10 group-hover:text-[var(--hover-text)]">
-                      {it.label}
+                      {link.label}
                     </span>
 
                     {/* 下划线：默认隐藏，hover 渐入并从中间展开 */}
