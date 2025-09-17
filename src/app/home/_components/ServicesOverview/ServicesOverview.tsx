@@ -1,13 +1,13 @@
-import background1 from "./_assets/Mask_group4.png";
-import background2 from "./_assets/Mask_group6.png";
-import background3 from "./_assets/Mask_group7.png";
-import background4 from "./_assets/Rectangle_346568744.png";
-import background5 from "./_assets/Rectangle_3465687442.png";
-import line from "./_assets/Rectangle_346568748.png";
-import block1 from "./_assets/image_12974.png";
-import block2 from "./_assets/image_12975.png";
-import block3 from "./_assets/image_12976.png";
-import block4 from "./_assets/image_12977.png";
+import heroPatternMain from "./_assets/services-hero-pattern-main.png";
+import heroPatternSecondary from "./_assets/services-hero-pattern-secondary.png";
+import heroPatternAccent from "./_assets/services-hero-pattern-accent.png";
+import leftCardBackground from "./_assets/services-card-bg-left.png";
+import rightCardBackground from "./_assets/services-card-bg-right.png";
+import titleUnderline from "./_assets/services-title-underline.png";
+import fullStackConsultingImage from "./_assets/service-full-stack-consulting.png";
+import productIncubationImage from "./_assets/service-product-incubation.png";
+import technologyAccelerationImage from "./_assets/service-technology-acceleration.png";
+import dedicatedDevelopmentImage from "./_assets/service-dedicated-development.png";
 import TitleWithCircle from "../../../../_components/TitleWithCircle";
 
 const button_color = "#2D7597";
@@ -30,7 +30,7 @@ function ServicesOverview() {
     <div
       className="justify-center border-box justify-items-center py-3 bg-no-repeat"
       style={{
-        backgroundImage: `url(${background1}), url(${background2}), url(${background3})`,
+        backgroundImage: `url(${heroPatternMain}), url(${heroPatternSecondary}), url(${heroPatternAccent})`,
         backgroundPosition: "right top, right 85%, left 55%",
         backgroundSize: "28% auto, 12% auto, 15% auto",
         backgroundColor: background,
@@ -72,7 +72,7 @@ function ServicesOverview() {
           <div
             className="flex w-full py-2 bg-cover bg-no-repeat justify-between items-center"
             style={{
-              backgroundImage: `url(${background4})`,
+              backgroundImage: `url(${leftCardBackground})`,
               backgroundSize: "auto 100%",
               backgroundPosition: "left center",
             }}
@@ -81,7 +81,7 @@ function ServicesOverview() {
               <h3
                 className="font-bold bg-cover bg-no-repeat"
                 style={{
-                  backgroundImage: `url(${line})`,
+                  backgroundImage: `url(${titleUnderline})`,
                   backgroundSize: "auto 15px",
                   backgroundPosition: "left 85%",
                   fontSize: section,
@@ -122,7 +122,7 @@ function ServicesOverview() {
               </div>
             </div>
             <img
-              src={block1}
+              src={fullStackConsultingImage}
               alt="Full-stack Consulting"
               className="self-center w-64 h-64 transform -translate-x-15"
             ></img>
@@ -131,13 +131,13 @@ function ServicesOverview() {
           <div
             className="flex w-full py-3 bg-cover bg-no-repeat justify-between items-center"
             style={{
-              backgroundImage: `url(${background5})`,
+              backgroundImage: `url(${rightCardBackground})`,
               backgroundSize: "auto 100%",
               backgroundPosition: "right center",
             }}
           >
             <img
-              src={block2}
+              src={productIncubationImage}
               alt="Full-stack Consulting"
               className="self-center ml-20 translate-y-5"
               style={{ width: "11rem" }}
@@ -146,7 +146,7 @@ function ServicesOverview() {
               <h3
                 className="font-bold bg-cover bg-no-repeat"
                 style={{
-                  backgroundImage: `url(${line})`,
+                  backgroundImage: `url(${titleUnderline})`,
                   backgroundSize: "auto 15px",
                   backgroundPosition: "right 85%",
                   fontSize: section,
@@ -191,7 +191,7 @@ function ServicesOverview() {
           <div
             className="flex w-full py-10 bg-cover bg-no-repeat justify-between items-center"
             style={{
-              backgroundImage: `url(${background4})`,
+              backgroundImage: `url(${leftCardBackground})`,
               backgroundSize: "auto 100%",
               backgroundPosition: "left center",
             }}
@@ -200,7 +200,7 @@ function ServicesOverview() {
               <h3
                 className="font-bold bg-cover bg-no-repeat"
                 style={{
-                  backgroundImage: `url(${line})`,
+                  backgroundImage: `url(${titleUnderline})`,
                   backgroundSize: "auto 15px",
                   backgroundPosition: "left 85%",
                   fontSize: section,
@@ -241,32 +241,32 @@ function ServicesOverview() {
               </div>
             </div>
             <img
-              src={block3}
+              src={technologyAccelerationImage}
               alt="Full-stack Consulting"
               className="self-center transform -translate-x-38 translate-y-5"
-              style={{ width: "9rem" }}
+              style={{ width: "8rem" }}
             ></img>
           </div>
 
           <div
             className="flex w-full py-3 bg-cover bg-no-repeat justify-between items-center"
             style={{
-              backgroundImage: `url(${background5})`,
+              backgroundImage: `url(${rightCardBackground})`,
               backgroundSize: "auto 100%",
               backgroundPosition: "right center",
             }}
           >
             <img
-              src={block4}
+              src={dedicatedDevelopmentImage}
               alt="Full-stack Consulting"
               className="self-center ml-20"
-              style={{ width: "11rem" }}
+              style={{ width: "15rem" }}
             ></img>
             <div className="grid text-right gap-3 pr-[42px] py-[42px]">
               <h3
                 className="font-bold bg-cover bg-no-repeat"
                 style={{
-                  backgroundImage: `url(${line})`,
+                  backgroundImage: `url(${titleUnderline})`,
                   backgroundSize: "auto 15px",
                   backgroundPosition: "right 85%",
                   fontSize: section,
