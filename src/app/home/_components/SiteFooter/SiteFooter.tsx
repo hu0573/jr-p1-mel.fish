@@ -1,28 +1,15 @@
-import type { CSSProperties } from "react";
 
-import footerLogo1x from "./_assets/footer-logo-1x.png";
-import footerLogo2x from "./_assets/footer-logo-2x.png";
+import logo1x from "./_assets/footer-logo-1x.png";
+import logo2x from "./_assets/footer-logo-2x.png";
 
-const BG = "#1F2A33";
-const BAR = "#71C6E5"; // 深蓝色 bar
-const HOVER_TEXT = "rgba(255,255,255,0.92)"; // hover 时文字略亮
 
-const links = [
-  { label: "About Us", href: "#" },
-  { label: "Products", href: "#" },
-  { label: "Blog", href: "#" },
-  { label: "See All Service", href: "#" },
-];
-
-export default function SiteFooter() {
-  const linkStyle = {
-    "--bar-color": BAR,
-    "--hover-text": HOVER_TEXT,
-  } as CSSProperties;
-
+const BG = "#232F37 ";
+const FF = "PingFang SC, PingFang SC";
+const paragraph = "1.125rem";
+function SiteFooter() {
   return (
     <section
-      className="relative w-full text-white"
+      className="relative w-screen left-1/2 -ml-[50vw] right-1/2 -mr-[50vw] text-white"
       style={{ backgroundColor: BG }}
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-5">
@@ -31,11 +18,11 @@ export default function SiteFooter() {
           {/* Logo 单独一行（小屏） */}
           <a
             href="/"
-            className="inline-flex items-center justify-center md:justify-start"
+            className="inline-flex items-center justify-center md:justify-start w-[253px] h-[65.96px] shrink-0"
           >
             <img
-              src={footerLogo1x}
-              srcSet={`${footerLogo1x} 1x, ${footerLogo2x} 2x`}
+              src={logo1x}
+              srcSet={`${logo1x} 1x, ${logo2x} 2x`}
               alt="melfish"
               className="h-9 w-auto"
               loading="lazy"
@@ -43,54 +30,133 @@ export default function SiteFooter() {
             />
           </a>
 
-          {/* 导航：四个按钮都有 bar（默认隐藏，hover 渐显） */}
-          <nav aria-label="Primary" className="w-full md:w-auto">
-            <ul className="flex flex-wrap items-center justify-center md:justify-end gap-8 text-slate-300">
-              {links.map((link) => (
-                <li key={link.label}>
+          {/* 导航：默认仅最后一个高亮；悬停时仅悬停项高亮 */}
+         <nav>
+              <ul className="group/menus flex text-white space-x-6 items-center">
+                {/* About Us */}
+                <li className="group">
                   <a
-                    href={link.href}
-                    className="group relative inline-flex items-center py-1 transition-colors"
-                    style={linkStyle}
+                    href="#"
+                    className="relative px-4 py-3 block transition-colors duration-300"
+                    style={{ fontFamily: FF, fontSize: paragraph }}
                   >
-                    {/* 文本：hover 时略亮 */}
-                    <span className="relative z-10 group-hover:text-[var(--hover-text)]">
-                      {link.label}
-                    </span>
-
-                    {/* 下划线：默认隐藏，hover 渐入并从中间展开 */}
+                    About Us
                     <span
                       aria-hidden
                       className="
                         pointer-events-none absolute left-1/2 -translate-x-1/2
-                        bottom-0 h-[3px] w-10 rounded-full
-                        bg-[var(--bar-color)]
-                        opacity-0 scale-x-50
-                        transition-[opacity,transform] duration-200 ease-out
-                        group-hover:opacity-100 group-hover:scale-x-100
+                        bottom-0 h-[3px] w-0 rounded-full bg-white
+                        opacity-0 transition-[opacity,width] duration-300 ease-out
+                        group-hover:opacity-100 group-hover:w-[50px]
                       "
                     />
                   </a>
                 </li>
-              ))}
-            </ul>
-          </nav>
+
+                {/* Products */}
+                <li className="group">
+                  <a
+                    href="#"
+                    className="relative px-4 py-3 block transition-colors duration-300"
+                    style={{ fontFamily: FF, fontSize: paragraph }}
+                  >
+                    Products
+                    <span
+                      aria-hidden
+                      className="
+                        pointer-events-none absolute left-1/2 -translate-x-1/2
+                        bottom-0 h-[3px] w-0 rounded-full bg-white
+                        opacity-0 transition-[opacity,width] duration-300 ease-out
+                        group-hover:opacity-100 group-hover:w-[50px]
+                      "
+                    />
+                  </a>
+                </li>
+
+                {/* Blog */}
+                <li className="group">
+                  <a
+                    href="#"
+                    className="relative px-4 py-3 block transition-colors duration-300"
+                    style={{ fontFamily: FF, fontSize: paragraph }}
+                  >
+                    Blog
+                    <span
+                      aria-hidden
+                      className="
+                        pointer-events-none absolute left-1/2 -translate-x-1/2
+                        bottom-0 h-[3px] w-0 rounded-full bg-white
+                        opacity-0 transition-[opacity,width] duration-300 ease-out
+                        group-hover:opacity-100 group-hover:w-[50px]
+                      "
+                    />
+                  </a>
+                </li>
+
+                {/* See All Service —— 默认显示；当鼠标移到其它项时自动隐藏 */}
+                <li className="group">
+                  <a
+                    href="#"
+                    className="relative px-4 py-3 block transition-colors duration-300"
+                    style={{ fontFamily: FF, fontSize: paragraph }}
+                  >
+                    See All Service
+                    <span
+                      aria-hidden
+                      className="
+                        pointer-events-none absolute left-1/2 -translate-x-1/2
+                        bottom-0 h-[3px] rounded-full bg-white
+                        transition-[opacity,width] duration-300 ease-out
+                        w-[50px] opacity-100
+                        group-hover/menus:w-0 group-hover/menus:opacity-0   /* 鼠标在任何菜单项上时先收起 */
+                        hover:!w-[50px] hover:!opacity-100                  /* 如果正好悬停在本项，再展开 */
+                      "
+                    />
+                  </a>
+                </li>
+              </ul>
+            </nav>
+
+
         </div>
 
-        {/* 细分割线 */}
-        <div className="mt-6 h-px bg-white/15" />
+        {/* 细分割线 —— 1280px 宽，1px，白色10%，虚线，居中 */}
+        <hr
+          className="mt-6 mx-auto w-[1280px] border-0 border-t border-dashed border-white/10"
+        />
 
-        {/* 中部：标题 + 副标题 */}
-        <div className="py-8 text-center">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight">
+        {/* 中部：标题 + 副标题*/}
+        <div className="py-8">
+          
+          <h1
+            className="mx-auto w-[411px] text-center text-[24px] leading-[34px] font-bold text-white tracking-tight"
+            style={{
+              fontFamily: '"PingFang SC","Helvetica Neue",Helvetica,Arial,sans-serif',
+            }}
+          >
             Technical Excellence You Can Trust
           </h1>
-          <p className="mt-3 text-slate-300">
-            Trusted development partner for every stage of your product journey,
-            from idea to scale
+
+        
+          <p
+            className="
+              mx-auto mt-3 text-center font-medium whitespace-nowrap px-4
+            "
+            style={{
+              color: "#5DAFCF",
+              fontFamily: '"PingFang SC","Helvetica Neue",Helvetica,Arial,sans-serif',
+              // 字体随视口缩放，12–18px 之间自适应；行高随之变化
+              fontSize: "clamp(12px, 1.6vw, 18px)",
+              lineHeight: "clamp(18px, 2.2vw, 25px)",
+            }}
+          >
+            Trusted development partner for every stage of your product journey, from idea to scale
           </p>
+
         </div>
       </div>
-    </section>
+  </section>
   );
 }
+
+export default SiteFooter
