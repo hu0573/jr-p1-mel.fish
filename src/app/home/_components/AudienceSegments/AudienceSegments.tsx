@@ -71,7 +71,6 @@ export default function AudienceSegments() {
     <section
       className="
         relative overflow-hidden py-14
-        lg:w-screen lg:left-1/2 lg:right-1/2 lg:-ml-[50vw] lg:-mr-[50vw]
       "
     >
       {/* 背景遮罩 */}

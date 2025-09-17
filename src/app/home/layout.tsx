@@ -5,5 +5,11 @@ export type HomeLayoutProps = {
 };
 
 export default function HomeLayout({ children }: HomeLayoutProps) {
-  return <main>{children}</main>;
+  return (
+    <div className="min-h-screen w-full bg-slate-100">
+      <main className="mx-auto w-full max-w-[1920px] bg-white">
+        {children}
+      </main>
+    </div>
+  );
 }

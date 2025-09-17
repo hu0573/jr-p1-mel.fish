@@ -22,7 +22,7 @@ export default function SiteFooter() {
 
   return (
     <section
-      className="relative w-screen left-1/2 -ml-[50vw] right-1/2 -mr-[50vw] text-white"
+      className="relative w-full text-white"
       style={{ backgroundColor: BG }}
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-5">

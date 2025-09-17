@@ -7,8 +7,7 @@ const BUTTON_BG = "#2D7597"; // 按钮主色
 
 export default function CallToActionWave() {
   return (
-    // full-bleed：占满整屏宽度，背景图可贴到最右边
-    <section className="relative w-screen left-1/2 -ml-[50vw] right-1/2 -mr-[50vw] overflow-hidden">
+    <section className="relative w-full overflow-hidden">
       {/* 顶部浅灰背景层 */}
       <div
         aria-hidden
