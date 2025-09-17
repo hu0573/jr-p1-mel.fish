@@ -1,1 +1,1 @@
-export { CaseStudiesBanner, CaseStudiesBannerFullBleed } from "./CaseStudiesBanner";
+export { default } from "./CaseStudiesBanner";

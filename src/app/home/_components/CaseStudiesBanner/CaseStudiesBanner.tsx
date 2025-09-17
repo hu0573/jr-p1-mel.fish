@@ -5,7 +5,7 @@ import banner2x from "./_assets/banner-2x.png";
  * 横幅条状图片（全宽、定高、居中裁切）。默认高度在大屏为 301px，
  * 小屏按需递减。使用 srcSet 以便高分屏加载 2x 资源。
  */
-export function CaseStudiesBanner() {
+function CaseStudiesBanner() {
   return (
     <section aria-label="case studies banner" className="relative">
       <picture>
@@ -22,10 +22,12 @@ export function CaseStudiesBanner() {
   );
 }
 
-export function CaseStudiesBannerFullBleed() {
-  return (
-    <div className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen">
-      <CaseStudiesBanner />
-    </div>
-  );
-}
+// function CaseStudiesBannerFullBleed() {
+//   return (
+//     <div className="relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] w-screen">
+//       <CaseStudiesBanner />
+//     </div>
+//   );
+// }
+
+export default CaseStudiesBanner;
